@@ -1,0 +1,34 @@
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: mythicaleks-eksctl-dev
+  region: us-east-1
+  version: "1.33"
+
+availabilityZones:
+  - us-east-1a
+  - us-east-1b
+  - us-east-1c
+
+managedNodeGroups:
+  - name: nodegroup
+    desiredCapacity: 3
+
+    ssh:
+      allow: true
+      publicKeyName: mythicaleks
+
+iamIdentityMappings:
+  - arn: "arn:aws:iam::716713632458:user/Abinaya"
+    username: admin
+    groups:
+      - system:masters
+    noDuplicateARNs: true
+
+
+# After executing yaml file, try with below command to create cluster
+eksctl create cluster -f mythicaleks.yaml
+
+Tip : Launching an Amazon EKS cluster and all the dependencies will take approximately 15 minutes.

@@ -1,0 +1,331 @@
+[root@ip-172-31-7-113 monolith-service]# kubectl apply -f monolith-app.yaml
+deployment.apps/mythical-mysfits-eks unchanged
+service/mythical-mysfits-eks created
+[root@ip-172-31-7-113 monolith-service]# kubectl get nodes
+NAME                             STATUS   ROLES    AGE   VERSION
+ip-192-168-1-70.ec2.internal     Ready    <none>   26h   v1.33.5-eks-ecaa3a6
+ip-192-168-47-160.ec2.internal   Ready    <none>   26h   v1.33.5-eks-ecaa3a6
+ip-192-168-89-228.ec2.internal   Ready    <none>   26h   v1.33.5-eks-ecaa3a6
+[root@ip-172-31-7-113 monolith-service]# kubectl describe pods
+Name:             mythical-mysfits-eks-648c9cbcf5-bvbnt
+Namespace:        default
+Priority:         0
+Service Account:  mythical-misfit
+Node:             ip-192-168-89-228.ec2.internal/192.168.89.228
+Start Time:       Sun, 28 Dec 2025 08:46:20 +0000
+Labels:           app=mythical-mysfits-eks
+                  pod-template-hash=648c9cbcf5
+Annotations:      <none>
+Status:           Pending
+IP:               192.168.95.136
+IPs:
+  IP:           192.168.95.136
+Controlled By:  ReplicaSet/mythical-mysfits-eks-648c9cbcf5
+Containers:
+  mythical-mysfits-eks:
+    Container ID:   
+    Image:          $MONO_ECR_REPOSITORY_URI:latest
+    Image ID:       
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       InvalidImageName
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DDB_TABLE_NAME:                          ${TABLE_NAME}
+      AWS_DEFAULT_REGION:                      ${AWS_REGION}
+      AWS_STS_REGIONAL_ENDPOINTS:              regional
+      AWS_CONTAINER_CREDENTIALS_FULL_URI:      http://169.254.170.23/v1/credentials
+      AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-s4m8g (ro)
+      /var/run/secrets/pods.eks.amazonaws.com/serviceaccount from eks-pod-identity-token (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  eks-pod-identity-token:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  80345
+  kube-api-access-s4m8g:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason         Age                    From               Message
+  ----     ------         ----                   ----               -------
+  Normal   Scheduled      7m9s                   default-scheduler  Successfully assigned default/mythical-mysfits-eks-648c9cbcf5-bvbnt to ip-192-168-89-228.ec2.internal
+  Warning  Failed         4m58s (x12 over 7m9s)  kubelet            Error: InvalidImageName
+  Warning  InspectFailed  119s (x25 over 7m9s)   kubelet            Failed to apply default image tag "$MONO_ECR_REPOSITORY_URI:latest": couldn't parse image name "$MONO_ECR_REPOSITORY_URI:latest": invalid reference format: repository name (library/$MONO_ECR_REPOSITORY_URI) must be lowercase
+
+
+Name:             mythical-mysfits-eks-648c9cbcf5-rxfww
+Namespace:        default
+Priority:         0
+Service Account:  mythical-misfit
+Node:             ip-192-168-47-160.ec2.internal/192.168.47.160
+Start Time:       Sun, 28 Dec 2025 08:46:20 +0000
+Labels:           app=mythical-mysfits-eks
+                  pod-template-hash=648c9cbcf5
+Annotations:      <none>
+Status:           Pending
+IP:               192.168.39.16
+IPs:
+  IP:           192.168.39.16
+Controlled By:  ReplicaSet/mythical-mysfits-eks-648c9cbcf5
+Containers:
+  mythical-mysfits-eks:
+    Container ID:   
+    Image:          $MONO_ECR_REPOSITORY_URI:latest
+    Image ID:       
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       InvalidImageName
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DDB_TABLE_NAME:                          ${TABLE_NAME}
+      AWS_DEFAULT_REGION:                      ${AWS_REGION}
+      AWS_STS_REGIONAL_ENDPOINTS:              regional
+      AWS_CONTAINER_CREDENTIALS_FULL_URI:      http://169.254.170.23/v1/credentials
+      AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-hs782 (ro)
+      /var/run/secrets/pods.eks.amazonaws.com/serviceaccount from eks-pod-identity-token (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  eks-pod-identity-token:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  80540
+  kube-api-access-hs782:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason         Age                    From               Message
+  ----     ------         ----                   ----               -------
+  Normal   Scheduled      7m9s                   default-scheduler  Successfully assigned default/mythical-mysfits-eks-648c9cbcf5-rxfww to ip-192-168-47-160.ec2.internal
+  Warning  Failed         4m58s (x12 over 7m9s)  kubelet            Error: InvalidImageName
+  Warning  InspectFailed  119s (x26 over 7m9s)   kubelet            Failed to apply default image tag "$MONO_ECR_REPOSITORY_URI:latest": couldn't parse image name "$MONO_ECR_REPOSITORY_URI:latest": invalid reference format: repository name (library/$MONO_ECR_REPOSITORY_URI) must be lowercase
+[root@ip-172-31-7-113 monolith-service]# ls
+Dockerfile  iam-dynamodb-policy.json  monolith-app.yaml  service  trust-policy.json
+[root@ip-172-31-7-113 monolith-service]# vim monolith-app.yaml
+[root@ip-172-31-7-113 monolith-service]# kubectl apply -f monolith-app.yaml
+deployment.apps/mythical-mysfits-eks configured
+service/mythical-mysfits-eks unchanged
+[root@ip-172-31-7-113 monolith-service]# kubectl describe pods
+Name:             mythical-mysfits-eks-648c9cbcf5-bvbnt
+Namespace:        default
+Priority:         0
+Service Account:  mythical-misfit
+Node:             ip-192-168-89-228.ec2.internal/192.168.89.228
+Start Time:       Sun, 28 Dec 2025 08:46:20 +0000
+Labels:           app=mythical-mysfits-eks
+                  pod-template-hash=648c9cbcf5
+Annotations:      <none>
+Status:           Pending
+IP:               192.168.95.136
+IPs:
+  IP:           192.168.95.136
+Controlled By:  ReplicaSet/mythical-mysfits-eks-648c9cbcf5
+Containers:
+  mythical-mysfits-eks:
+    Container ID:   
+    Image:          $MONO_ECR_REPOSITORY_URI:latest
+    Image ID:       
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       InvalidImageName
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DDB_TABLE_NAME:                          ${TABLE_NAME}
+      AWS_DEFAULT_REGION:                      ${AWS_REGION}
+      AWS_STS_REGIONAL_ENDPOINTS:              regional
+      AWS_CONTAINER_CREDENTIALS_FULL_URI:      http://169.254.170.23/v1/credentials
+      AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-s4m8g (ro)
+      /var/run/secrets/pods.eks.amazonaws.com/serviceaccount from eks-pod-identity-token (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  eks-pod-identity-token:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  80345
+  kube-api-access-s4m8g:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason         Age                  From               Message
+  ----     ------         ----                 ----               -------
+  Normal   Scheduled      18m                  default-scheduler  Successfully assigned default/mythical-mysfits-eks-648c9cbcf5-bvbnt to ip-192-168-89-228.ec2.internal
+  Warning  Failed         15m (x12 over 18m)   kubelet            Error: InvalidImageName
+  Warning  InspectFailed  3m4s (x69 over 18m)  kubelet            Failed to apply default image tag "$MONO_ECR_REPOSITORY_URI:latest": couldn't parse image name "$MONO_ECR_REPOSITORY_URI:latest": invalid reference format: repository name (library/$MONO_ECR_REPOSITORY_URI) must be lowercase
+
+
+Name:             mythical-mysfits-eks-78b74799ff-2r89h
+Namespace:        default
+Priority:         0
+Service Account:  mythical-misfit
+Node:             ip-192-168-47-160.ec2.internal/192.168.47.160
+Start Time:       Sun, 28 Dec 2025 09:04:18 +0000
+Labels:           app=mythical-mysfits-eks
+                  pod-template-hash=78b74799ff
+Annotations:      <none>
+Status:           Running
+IP:               192.168.47.61
+IPs:
+  IP:           192.168.47.61
+Controlled By:  ReplicaSet/mythical-mysfits-eks-78b74799ff
+Containers:
+  mythical-mysfits-eks:
+    Container ID:   containerd://1a4be411a8ef9833a1b3810da12d4fc698f4da02a294205144465b539c25eb43
+    Image:          716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service:latest
+    Image ID:       716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service@sha256:206ece509038a4da9465a5c1e8d2483ed13c4b9739caa0bc5d9223d4fa442941
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 28 Dec 2025 09:04:24 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      DDB_TABLE_NAME:                          MysfitsTable
+      AWS_DEFAULT_REGION:                      us-east-1
+      AWS_STS_REGIONAL_ENDPOINTS:              regional
+      AWS_CONTAINER_CREDENTIALS_FULL_URI:      http://169.254.170.23/v1/credentials
+      AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6vpw2 (ro)
+      /var/run/secrets/pods.eks.amazonaws.com/serviceaccount from eks-pod-identity-token (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  eks-pod-identity-token:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  79639
+  kube-api-access-6vpw2:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  12s   default-scheduler  Successfully assigned default/mythical-mysfits-eks-78b74799ff-2r89h to ip-192-168-47-160.ec2.internal
+  Normal  Pulling    12s   kubelet            Pulling image "716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service:latest"
+  Normal  Pulled     6s    kubelet            Successfully pulled image "716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service:latest" in 5.984s (5.984s including waiting). Image size: 140821205 bytes.
+  Normal  Created    6s    kubelet            Created container: mythical-mysfits-eks
+  Normal  Started    6s    kubelet            Started container mythical-mysfits-eks
+
+
+Name:             mythical-mysfits-eks-78b74799ff-plwwd
+Namespace:        default
+Priority:         0
+Service Account:  mythical-misfit
+Node:             ip-192-168-1-70.ec2.internal/192.168.1.70
+Start Time:       Sun, 28 Dec 2025 09:04:25 +0000
+Labels:           app=mythical-mysfits-eks
+                  pod-template-hash=78b74799ff
+Annotations:      <none>
+Status:           Pending
+IP:               
+IPs:              <none>
+Controlled By:    ReplicaSet/mythical-mysfits-eks-78b74799ff
+Containers:
+  mythical-mysfits-eks:
+    Container ID:   
+    Image:          716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service:latest
+    Image ID:       
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DDB_TABLE_NAME:                          MysfitsTable
+      AWS_DEFAULT_REGION:                      us-east-1
+      AWS_STS_REGIONAL_ENDPOINTS:              regional
+      AWS_CONTAINER_CREDENTIALS_FULL_URI:      http://169.254.170.23/v1/credentials
+      AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE:  /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-c2r62 (ro)
+      /var/run/secrets/pods.eks.amazonaws.com/serviceaccount from eks-pod-identity-token (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  eks-pod-identity-token:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  86249
+  kube-api-access-c2r62:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  4s    default-scheduler  Successfully assigned default/mythical-mysfits-eks-78b74799ff-plwwd to ip-192-168-1-70.ec2.internal
+  Normal  Pulling    4s    kubelet            Pulling image "716713632458.dkr.ecr.us-east-1.amazonaws.com/monolith-service:latest"
+[root@ip-172-31-7-113 monolith-service]# kubectl get pods --watch
+NAME                                    READY   STATUS    RESTARTS   AGE
+mythical-mysfits-eks-78b74799ff-2r89h   1/1     Running   0          49s
+mythical-mysfits-eks-78b74799ff-plwwd   1/1     Running   0          42s

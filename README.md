@@ -21,6 +21,7 @@ The goal is to showcase practical knowledge of Kubernetes, AWS networking, IAM, 
 ## Architecture
 ![EKS Architecture](architecture/eks-architecture.png)
 
+
 ## What I Implemented
 - Created EKS cluster using eksctl
 - Configured IAM roles for service accounts (IRSA)
@@ -30,12 +31,13 @@ The goal is to showcase practical knowledge of Kubernetes, AWS networking, IAM, 
 - Implemented basic monitoring
 
 ## Step-by-Step Implementation
-1. Created EKS cluster
-2. Configured node groups and IAM
-3. Built and pushed Docker image to ECR
-4. Deployed application using Kubernetes manifests
-5. Configured ingress with ALB
-6. Verified application access
+1. Intially prepare environment by installing eksctl,awscli,kubectl,helm,yq,Particpant IAM role
+2. Created EKS cluster / Configured node groups and IAM
+3. Configure the AWS Load Balancer Controller to expose the application services.
+4. Built and pushed Docker image to ECR
+5. Deployed application using Kubernetes manifests
+6. Configured ingress with ALB
+7. Verified application access
 
 ## Challenges & Learnings
 - Understood how IAM roles are mapped to Kubernetes service accounts
@@ -47,4 +49,10 @@ The goal is to showcase practical knowledge of Kubernetes, AWS networking, IAM, 
 
 ## Clean-Up
 (To avoid AWS charges)
+
+## Refer folders in this order
+
+- setup - Kube cluster and Service acc 
+- deployment - Load Balancer
+ 
 

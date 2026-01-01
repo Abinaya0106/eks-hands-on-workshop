@@ -1,0 +1,16 @@
+#Issues running eksctl
+#SSH Key Error
+If you receive an error regarding non-existent SSH key, please create the SSH key and run the cluster creation command again.
+
+#General API Error
+If your cluster fails to create, try running the command a 2nd time. If the issue persists, work with your lab moderator to identify the root cause.
+
+#Issues testing the EKS cluster
+Credentials API Error
+If you receive this error when trying to run any kubectl commands for this workshop:
+
+Unable to connect to the server: getting credentials: exec plugin is configured to use API version client.authentication.k8s.io/v1alpha1, plugin returned version client.authentication.k8s.io/v1beta1Launching
+
+#Execute the following command:
+
+aws eks update-kubeconfig --name mythicaleks-eksctl
