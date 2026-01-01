@@ -1,5 +1,7 @@
 #  We are going to enable AWS Container Insights using the Amazon CloudWatch Observability EKS add-on.
 
+![cweksaddon](<../architecture/Amazon CloudWatch Observability EKS add-on.png>)
+
 # Create trust policy for Pod Identity
 cat > cloudwatch-trust-policy.json <<EOF
 {
@@ -22,6 +24,10 @@ EOF
 aws iam create-role --role-name CloudWatchAgentRole --assume-role-policy-document file://cloudwatch-trust-policy.json
 aws iam attach-role-policy --role-name CloudWatchAgentRole --policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
 
+![cwagentrole](../architecture/Cloudwatchagentrole.png)
+
+![cwagentpods](<../architecture/CloudWatch agent pods.png>)
+
 # Cloudwatch pods are running 
 kubectl get pods -n amazon-cloudwatch
 
@@ -34,6 +40,9 @@ Services: Service-level performance data
 
 # Key metrics to monitor 
 Container Insights automatically collects:
+
+![containerinsights](<../architecture/container insights.png>)
+
 
 CPU and memory utilization at cluster, node, and pod levels
 Network metrics including packet counts and errors

@@ -17,6 +17,9 @@ b)eksctl-mythicaleks-eksctl-dev-cluster
  #  Provision AWS Load Balancer Controller to expose the application services.
 
  - Install EKS Pod Identity Agent : eksctl create addon --cluster mythicaleks-eksctl --name eks-pod-identity-agent
+
+ ![podidentity](<../architecture/pod identity agent - addon.png>)
+
  - Download the IAM policy for the AWS Load Balancer Controller: curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
  - Create an IAM role for the AWS Load Balancer Controller: # Create the IAM policy
@@ -58,6 +61,9 @@ aws eks create-pod-identity-association \
     --namespace kube-system \
     --service-account aws-load-balancer-controller \
     --role-arn arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):role/AWSLoadBalancerControllerRole
+
+![kubeserviceacc](<../architecture/pod identity association with kube service account.png>)
+
 
 TIP : What is this doing?
 This creates a service account in the kube-system namespace and associates it with the IAM role using EKS Pod Identity. The Pod Identity agent will automatically provide the necessary credentials to pods using this service account.
